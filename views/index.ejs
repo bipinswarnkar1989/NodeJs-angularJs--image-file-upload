@@ -1,0 +1,20 @@
+    <head>
+        <title><%=title %></title>
+        <script type="text/javascript" src="js/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.0.4/ng-file-upload.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.0.4/ng-file-upload-shim.min.js"></script>
+         <script type="text/javascript" src="js/app.js"></script>
+         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    </head>
+    <body ng-app="fileUploadDemo">
+        <h1 align="center"><%=title %></h1>
+         <div class="col-sm-4 col-sm-offset-4">
+        <form action="/image-upload" enctype="multipart/form-data" ng-controller="HomeCtrl" method="post">
+        <input type="file" ngf-select ng-model="user.file" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="10MB" class="form-control">
+        <input type="button" ng-click="upload(user)"  class="btn btn-danger btn-block" value="Upload">
+        </form>
+        </div>
+        
+     </body>
+     </html>
