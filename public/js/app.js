@@ -1,23 +1,35 @@
 angular.module('fileUploadDemo',['ngFileUpload'])
 .controller('HomeCtrl',['Upload','$scope',function(Upload,$scope){
 	$scope.img = false;
+	
+	  $scope.check = function(){
+		  $scope.msg = "";
+		  $scope.img = false;
+	  }
 		$scope.upload = function(user){
+			//alert(user.file);
+		if(user.file != undefined){
+			$scope.msg = "";
 			$scope.img = '/loadingAnimation.gif';
-		if(user.file){
 			Upload.upload({
 				url: 'http://localhost:3000/image-upload',
 				data:{file:user.file}
 			}).then(function(res){
 				if(res.data.success){
-					alert(res.data.msg);
+					$scope.msg = res.data.msg;
 					$scope.img = 'uploads/'+res.data.img_path;
+					user.file = "";
 				}
 				else{
-					alert(res.data.msg);
+					$scope.msg = res.data.msg;
+					$scope.img = false;
 				}
 			});
 		}
-		else{alert('Select file');}
+		else{
+			$scope.msg = 'Select valid image  file';
+			$scope.img = false;
+			}
 	}
 	
 }]);
